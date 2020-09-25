@@ -12,6 +12,10 @@ public class Card {
         return this.cardValue.getValue();
     }
 
+    public CardValue getCardName(){
+        return this.cardValue;
+    }
+
     public String getSuitValue() {
         return this.cardSuit.getSuit();
     }

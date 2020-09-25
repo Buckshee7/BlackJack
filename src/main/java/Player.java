@@ -9,7 +9,7 @@ public class Player {
         this.name = name;
     }
 
-    public ArrayList<Card> getCard() {
+    public ArrayList<Card> getHand() {
         return hand;
     }
 
@@ -17,10 +17,10 @@ public class Player {
         return name;
     }
 
-    public void setCard(Card card) {
+    public void addCard(Card card) {
         this.hand.add(card);
     }
-    
+
     public void clearHand(){
         this.hand.clear();
     }

@@ -6,10 +6,12 @@ import static org.junit.Assert.assertEquals;
 public class PlayerTest {
 
     private Player player;
+    private Card card;
 
     @Before
     public void before(){
         this.player = new Player("Ally");
+        this.card = new Card(CardValue.ACE, CardSuit.SPADES);
     }
 
     @Test
@@ -18,10 +20,22 @@ public class PlayerTest {
     }
 
     @Test
-    public void startsWithNoCard(){
-        assertEquals(null, this.player.getCard());
+    public void startsWithEmptyHand(){
+        assertEquals(0, this.player.getHand().size());
     }
 
+    @Test
+    public void canAddCardToHand(){
+        this.player.addCard(this.card);
+        assertEquals(1, this.player.getHand().size());
+    }
+
+    @Test
+    public void canClearHand(){
+        this.player.addCard(this.card);
+        this.player.clearHand();
+        assertEquals(0, this.player.getHand().size());
+    }
 
 
 }

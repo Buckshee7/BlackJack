@@ -20,7 +20,8 @@ public class Game {
 
     public void dealFromDeck(){
         for(Player player : players){
-            player.setCard(deck.dealCard());
+            player.addCard(deck.dealCard());
+            player.addCard(deck.dealCard());
         }
     }
 

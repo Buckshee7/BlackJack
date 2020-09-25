@@ -40,6 +40,14 @@ public class Game {
         return winnerList;
     }
 
+    private int getTotalValueForPlayerHand(Player player){
+        int total = 0;
+        for(Card card : player.getHand()){
+            total += card.getCardValue();
+        }
+        return total;
+    }
+
     public String getWinner(){
         ArrayList<Player> winnerList = this.decideWinner();
         if(winnerList.size() == 1){

@@ -1,14 +1,16 @@
+import java.util.ArrayList;
+
 public class Player {
 
     private String name;
-    private Card card;
+    private ArrayList<Card> hand;
 
     public Player(String name) {
         this.name = name;
     }
 
-    public Card getCard() {
-        return card;
+    public ArrayList<Card> getCard() {
+        return hand;
     }
 
     public String getName() {
@@ -16,6 +18,10 @@ public class Player {
     }
 
     public void setCard(Card card) {
-        this.card = card;
+        this.hand.add(card);
+    }
+    
+    public void clearHand(){
+        this.hand.clear();
     }
 }

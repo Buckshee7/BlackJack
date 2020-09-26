@@ -22,7 +22,8 @@ public class CardTest {
         assertEquals("Spades", this.card.getSuitValue());
     }
 
-    @Test void canGetValueAsCardSuit(){
+    @Test
+    public void canGetValueAsCardSuit(){
         assertEquals(CardValue.KING, this.card.getCardName() );
     }
 

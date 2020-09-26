@@ -31,38 +31,38 @@ public class GameTest {
 
     @Test
     public void playerOneCanWin(){
-        player1.setCard(card2);
-        player2.setCard(card1);
+        player1.addCard(card2);
+        player2.addCard(card1);
         ArrayList<Player> players = new ArrayList<>();
         players.add(player1);
         players.add(player2);
         this.game = new Game(players,deck);
         System.out.println(this.game.getWinner());
-        assertEquals("Ally wins! They drew a 2 of Spades", this.game.getWinner());
+        assertEquals("Ally wins! Their hand total was 2", this.game.getWinner());
     }
 
     @Test
     public void playerTwoCanWin(){
-        player1.setCard(card1);
-        player2.setCard(card2);
+        player1.addCard(card1);
+        player2.addCard(card2);
         ArrayList<Player> players = new ArrayList<>();
         players.add(player1);
         players.add(player2);
         this.game = new Game(players,deck);
         System.out.println(this.game.getWinner());
-        assertEquals("Jenn wins! They drew a 2 of Spades", this.game.getWinner());
+        assertEquals("Jenn wins! Their hand total was 2", this.game.getWinner());
     }
 
     @Test
     public void canBeDraw(){
-        player1.setCard(card2);
-        player2.setCard(card2);
+        player1.addCard(card2);
+        player2.addCard(card2);
         ArrayList<Player> players = new ArrayList<>();
         players.add(player1);
         players.add(player2);
         this.game = new Game(players,deck);
         System.out.println(this.game.getWinner());
-        assertEquals("It's a draw!  Ally and Jenn drew a 2", this.game.getWinner());
+        assertEquals("It's a draw!  Ally and Jenn's hand totals were 2", this.game.getWinner());
     }
 
 }

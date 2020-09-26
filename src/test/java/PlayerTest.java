@@ -21,6 +21,7 @@ public class PlayerTest {
 
     @Test
     public void startsWithEmptyHand(){
+        System.out.println(this.player.getHand().size());
         assertEquals(0, this.player.getHand().size());
     }
 

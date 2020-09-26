@@ -30,10 +30,10 @@ public class Game {
         for(Player player : players){
             if (winnerList.size() == 0) {
                 winnerList.add(player);
-            } else if (player.getCard().getCardValue() > winnerList.get(0).getCard().getCardValue()){
+            } else if (getTotalValueForPlayerHand(player) > getTotalValueForPlayerHand(winnerList.get(0))){
                 winnerList.clear();
                 winnerList.add(player);
-            } else if (player.getCard().getCardValue() == winnerList.get(0).getCard().getCardValue()){
+            } else if (getTotalValueForPlayerHand(player) == getTotalValueForPlayerHand(winnerList.get(0))){
                 winnerList.add(player);
             }
         }

@@ -20,4 +20,8 @@ public class Card {
         return this.cardSuit.getSuit();
     }
 
+    public String getCardValueAndSuit(){
+        return String.format("%s of %s", this.getCardName(), this.cardValue);
+    }
+
 }

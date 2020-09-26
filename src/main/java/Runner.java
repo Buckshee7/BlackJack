@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Integer.parseInt;
 
@@ -31,24 +32,24 @@ public class Runner {
         deck.shuffleDeck();
 
         Game game = new Game(players, deck);
+        game.dealFromDeck();
 
         //reporting and decision-making
         for(Player player : game.getPlayers()){
             //report player hand situation
             System.out.println(String.format("%s's turn", player.getName()));
+            game.delayGameXMs(1200);
             System.out.println(String.format("%s's cards:", player.getName()));
             for (Card card : player.getHand()) {
                 System.out.println(card.getCardValueAndSuit());
+                game.delayGameXMs(800);
             }
             System.out.println(String.format("Hand Total Value: %s", player.getHandTotal()));
+            game.delayGameXMs(1000);
             if (player.getName() != "Dealer"){
                 boolean endTurn = false;
                 while (endTurn == false) {
-                    if (player.getHandTotal() > 21){
-                        System.out.println(String.format("%s is bust!", player.getName()));
-                    } else if (player.getHandTotal() == 100){
-                        System.out.println("BlackJack!");
-                    }
+
                     //get player decision
                     if (player.getHandTotal() >= 21){
                         endTurn = true;
@@ -56,33 +57,47 @@ public class Runner {
                         boolean validResponse = false;
                         String decision = "";
                         while (validResponse == false) {
-                            if (decision.toLowerCase() != "twist" && decision.toLowerCase() != "stand") {
+                            //ensure response valid
+                            decision.toLowerCase();
+                            if (decision.equalsIgnoreCase("twist") || decision.equalsIgnoreCase("stand")) {
+                                validResponse = true;
+                            } else {
                                 System.out.println("Twist or Stand?");
                                 decision = scanner.next();
-                            } else {
-                                validResponse = true;
                             }
                         }
-                        if (decision.toLowerCase() == "stand"){
+                        //action decision
+                        if (decision.equalsIgnoreCase("stand")) {
                             endTurn = true;
+                            System.out.println("--------------------");
                         } else {
                             System.out.println(game.twist(player));
                             System.out.println(String.format("Hand Total Value: %s", player.getHandTotal()));
+                            game.delayGameXMs(1000);
+                            game.reportIfBust21OrBlackjack(player);
                         }
                     }
                 }
             } else {
                 // if player is dealer twist if handTotal < 16
                 boolean endTurn = false;
+                game.delayGameXMs(2000);
                 while (endTurn == false) {
                     if (player.getHandTotal() < 16) {
+                        System.out.println("Dealer Twists");
+                        game.delayGameXMs(2000);
                         System.out.println(game.twist(player));
                         System.out.println(String.format("Hand Total Value: %s", player.getHandTotal()));
+                        game.delayGameXMs(2000);
+                        game.reportIfBust21OrBlackjack(player);
                     } else {
+                        System.out.println("Dealer Sticks");
+                        game.delayGameXMs(2000);
                         endTurn = true;
                     }
                 }
             }
+
         }
 
 //        game.reportGameOutcome();

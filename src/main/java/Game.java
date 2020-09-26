@@ -62,4 +62,24 @@ public class Game {
             return String.format("It's a draw! %s's hand totals were %d", playerNames, handValue);
         }
     }
+
+    public void delayGameXMs(int time){
+        try
+        { Thread.sleep(time); }
+        catch(InterruptedException ex)
+        { Thread.currentThread().interrupt(); }
+    }
+
+    public void reportIfBust21OrBlackjack(Player player){
+        if (player.getHandTotal() > 21){
+            System.out.println(String.format("%s is bust!", player.getName()));
+            System.out.println("--------------------");
+        } else if (player.getHandTotal() == 21){
+            System.out.println("21");
+            System.out.println("--------------------");
+        } else if (player.getHandTotal() == 100){
+            System.out.println("BlackJack!");
+            System.out.println("--------------------");
+        }
+    }
 }

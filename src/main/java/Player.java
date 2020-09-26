@@ -52,4 +52,9 @@ public class Player {
         }
         return (total == 21 && hasAce);
     }
+
+    public boolean isBust(){
+        int total = this.getHandTotal();
+        return total > 21 ? true : false;
+    }
 }

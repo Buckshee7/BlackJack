@@ -82,4 +82,42 @@ public class Game {
             System.out.println("--------------------");
         }
     }
+
+    public  void reportGameOutcome(){
+        for(Player player : this.players){
+            if (player.getName() != "Dealer") {
+                System.out.println(String.format("%s's hand total is %d", player.getName(), player.getHandTotal()));
+                delayGameXMs(1200);
+                System.out.println(vsDealerOutcome(player));
+                delayGameXMs(1200);
+                System.out.println("- - - - - - - - - -");
+            }
+        }
+    }
+
+    private String vsDealerOutcome(Player player){
+        int dealerIndex = this.players.size()-1;
+        Player dealer = this.players.get(dealerIndex);
+        int playerOutcomeTier = abstractPlayerOutcomeToTier(player);
+        int dealerOutcomeTier = abstractPlayerOutcomeToTier(dealer);
+        if (playerOutcomeTier < dealerOutcomeTier){
+            return String.format("%s has beaten the Dealer!", player.getName());
+        } else if (playerOutcomeTier > dealerOutcomeTier) {
+            return String.format("%s lost to the Dealer :(", player.getName());
+        } else {
+            if (playerOutcomeTier == 3 && player.getHandTotal() > dealer.getHandTotal()) {
+                return String.format("%s has beaten the Dealer!", player.getName());
+            }
+            return "It's a draw";
+        }
+    }
+
+    private int abstractPlayerOutcomeToTier(Player player){
+    int tier;
+        if (player.isBust()){ tier = 4;
+        } else if (player.isBlackJack()){ tier = 1;
+        } else if (player.getHandTotal() == 21){ tier = 2;
+        } else { tier = 3; }
+        return tier;
+    }
 }

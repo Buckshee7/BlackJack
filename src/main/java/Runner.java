@@ -18,7 +18,7 @@ public class Runner {
 
         // add players
         ArrayList<Player> players = new ArrayList();
-        for(int i=0; i<numberOfPlayers; i++){
+        for(int i=1; i<=numberOfPlayers; i++){
             System.out.println(String.format("Player %d, enter you name: ", i));
             String playerName = scanner.next();
             Player newPlayer = new Player(playerName);
@@ -42,7 +42,7 @@ public class Runner {
             System.out.println(String.format("%s's cards:", player.getName()));
             for (Card card : player.getHand()) {
                 System.out.println(card.getCardValueAndSuit());
-                game.delayGameXMs(800);
+                game.delayGameXMs(1000);
             }
             System.out.println(String.format("Hand Total Value: %s", player.getHandTotal()));
             game.delayGameXMs(1000);
@@ -85,22 +85,23 @@ public class Runner {
                 while (endTurn == false) {
                     if (player.getHandTotal() < 16) {
                         System.out.println("Dealer Twists");
-                        game.delayGameXMs(2000);
+                        game.delayGameXMs(1500);
                         System.out.println(game.twist(player));
-                        System.out.println(String.format("Hand Total Value: %s", player.getHandTotal()));
-                        game.delayGameXMs(2000);
+                        System.out.println(String.format("Hand Total Value: %d", player.getHandTotal()));
+                        game.delayGameXMs(1500);
                         game.reportIfBust21OrBlackjack(player);
                     } else {
                         System.out.println("Dealer Sticks");
-                        game.delayGameXMs(2000);
+                        game.delayGameXMs(1500);
                         endTurn = true;
                     }
                 }
+                System.out.println("***R*E*S*U*L*T*S***");
             }
 
         }
 
-//        game.reportGameOutcome();
+        game.reportGameOutcome();
     }
 
 }

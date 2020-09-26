@@ -74,11 +74,11 @@ public class Game {
         if (player.getHandTotal() > 21){
             System.out.println(String.format("%s is bust!", player.getName()));
             System.out.println("--------------------");
-        } else if (player.getHandTotal() == 21){
-            System.out.println("21");
+        } else if (player.isBlackJack()){
+            System.out.println(String.format("%s got BlackJack!", player.getName()));
             System.out.println("--------------------");
-        } else if (player.getHandTotal() == 100){
-            System.out.println("BlackJack!");
+        } else if (player.getHandTotal() == 21){
+            System.out.println(String.format("%s got 21!", player.getName()));
             System.out.println("--------------------");
         }
     }

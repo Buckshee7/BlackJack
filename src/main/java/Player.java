@@ -41,4 +41,15 @@ public class Player {
         }
         return total;
     }
+
+    public boolean isBlackJack(){
+        int total = this.getHandTotal();
+        boolean hasAce = false;
+        for(Card card : this.hand){
+            if (card.getCardName() == CardValue.ACE){
+                hasAce = true;
+            }
+        }
+        return (total == 21 && hasAce);
+    }
 }

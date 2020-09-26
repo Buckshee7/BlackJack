@@ -72,5 +72,23 @@ public class PlayerTest {
         assertEquals(13, this.player.getHandTotal());
     }
 
+    @Test
+    public void canTellIfBlackJackIfItIs(){
+        this.player.addCard(cardFive);
+        this.player.addCard(cardFive);
+        this.player.addCard(cardAce);
+        assertEquals(true, this.player.isBlackJack());
+    }
+
+    @Test
+    public void canTellIfBlackJackIfItIsnt(){
+        Card cardSeven = new Card(CardValue.SEVEN, CardSuit.HEARTS);
+        this.player.addCard(cardSeven);
+        this.player.addCard(cardFive);
+        this.player.addCard(cardFive);
+        this.player.addCard(cardFive);
+        assertEquals(false, this.player.isBlackJack());
+    }
+
 
 }

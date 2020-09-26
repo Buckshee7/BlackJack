@@ -14,10 +14,6 @@ public class Game {
         return players;
     }
 
-    public Deck getDeck() {
-        return deck;
-    }
-
     public void dealFromDeck(){
         for(Player player : players){
             player.addCard(deck.dealCard());
@@ -30,37 +26,6 @@ public class Game {
         int index = player.getHand().size() - 1;
         Card card = player.getHand().get(index);
         return card.getCardValueAndSuit();
-    }
-
-    private ArrayList<Player> decideWinner(){
-        ArrayList<Player> winnerList = new ArrayList<>();
-        for(Player player : players){
-            if (winnerList.size() == 0) {
-                winnerList.add(player);
-            } else if (player.getHandTotal() > winnerList.get(0).getHandTotal()){
-                winnerList.clear();
-                winnerList.add(player);
-            } else if (player.getHandTotal() == winnerList.get(0).getHandTotal()){
-                winnerList.add(player);
-            }
-        }
-        return winnerList;
-    }
-
-    public String getWinner(){
-        ArrayList<Player> winnerList = this.decideWinner();
-        int handValue = winnerList.get(0).getHandTotal();
-        if(winnerList.size() == 1){
-            String name = winnerList.get(0).getName();
-            return String.format("%s wins! Their hand total was %d", name, handValue);
-        } else {
-            String playerNames = "";
-            for(Player player : winnerList){
-                playerNames += String.format(" %s and", player.getName());
-            }
-            playerNames = playerNames.substring(0, playerNames.length()-4);
-            return String.format("It's a draw! %s's hand totals were %d", playerNames, handValue);
-        }
     }
 
     public void delayGameXMs(int time){
@@ -96,7 +61,7 @@ public class Game {
     }
 
     //returns a string describing the outcome of a sing player vs the dealer
-    private String vsDealerOutcome(Player player){
+    public String vsDealerOutcome(Player player){
         int dealerIndex = this.players.size()-1;
         Player dealer = this.players.get(dealerIndex);
         int playerOutcomeTier = abstractPlayerOutcomeToTier(player);
@@ -108,9 +73,11 @@ public class Game {
         } else {
             if (playerOutcomeTier == 3 && player.getHandTotal() > dealer.getHandTotal()) {
                 return String.format("%s has beaten the Dealer!", player.getName());
+            } else if (playerOutcomeTier == 3 && player.getHandTotal() < dealer.getHandTotal()) {
+                return String.format("%s lost to the Dealer :(", player.getName());
             }
-            return "It's a draw";
         }
+            return "It's a draw";
     }
 
     // provides a 'tier' depending on whether the player went bust(4),

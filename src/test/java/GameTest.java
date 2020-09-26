@@ -65,4 +65,5 @@ public class GameTest {
         assertEquals("It's a draw!  Ally and Jenn's hand totals were 2", this.game.getWinner());
     }
 
+
 }

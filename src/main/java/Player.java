@@ -28,8 +28,16 @@ public class Player {
 
     public int getHandTotal(){
         int total = 0;
+        int aces = 0;
         for(Card card : this.hand){
             total += card.getCardValue();
+            if (card.getCardName() == CardValue.ACE){
+                aces+=1;
+            }
+        }
+        while (total > 21 && aces > 0){
+            total -= 10;
+            aces -= 1;
         }
         return total;
     }

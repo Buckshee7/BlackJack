@@ -95,6 +95,7 @@ public class Game {
         }
     }
 
+    //returns a string describing the outcome of a sing player vs the dealer
     private String vsDealerOutcome(Player player){
         int dealerIndex = this.players.size()-1;
         Player dealer = this.players.get(dealerIndex);
@@ -112,6 +113,8 @@ public class Game {
         }
     }
 
+    // provides a 'tier' depending on whether the player went bust(4),
+    // got a middling hand total(3), got 21 without an ace(2) or got blackjack (1)
     private int abstractPlayerOutcomeToTier(Player player){
     int tier;
         if (player.isBust()){ tier = 4;

@@ -50,19 +50,17 @@ public class Game {
 
     public String getWinner(){
         ArrayList<Player> winnerList = this.decideWinner();
+        int handValue = getTotalValueForPlayerHand(winnerList.get(0));
         if(winnerList.size() == 1){
             String name = winnerList.get(0).getName();
-            String suit = winnerList.get(0).getCard().getSuitValue();
-            int value = winnerList.get(0).getCard().getCardValue();
-            return String.format("%s wins! They drew a %d of %s", name, value, suit);
+            return String.format("%s wins! Their hand total was %d", name, handValue);
         } else {
             String playerNames = "";
             for(Player player : winnerList){
                 playerNames += String.format(" %s and", player.getName());
             }
             playerNames = playerNames.substring(0, playerNames.length()-4);
-            int value = winnerList.get(0).getCard().getCardValue();
-            return String.format("It's a draw! %s drew a %d", playerNames, value);
+            return String.format("It's a draw! %s's hand totals were %d", playerNames, handValue);
         }
     }
 }

@@ -37,27 +37,19 @@ public class Game {
         for(Player player : players){
             if (winnerList.size() == 0) {
                 winnerList.add(player);
-            } else if (getTotalValueForPlayerHand(player) > getTotalValueForPlayerHand(winnerList.get(0))){
+            } else if (player.getHandTotal() > winnerList.get(0).getHandTotal()){
                 winnerList.clear();
                 winnerList.add(player);
-            } else if (getTotalValueForPlayerHand(player) == getTotalValueForPlayerHand(winnerList.get(0))){
+            } else if (player.getHandTotal() == winnerList.get(0).getHandTotal()){
                 winnerList.add(player);
             }
         }
         return winnerList;
     }
 
-    private int getTotalValueForPlayerHand(Player player){
-        int total = 0;
-        for(Card card : player.getHand()){
-            total += card.getCardValue();
-        }
-        return total;
-    }
-
     public String getWinner(){
         ArrayList<Player> winnerList = this.decideWinner();
-        int handValue = getTotalValueForPlayerHand(winnerList.get(0));
+        int handValue = winnerList.get(0).getHandTotal();
         if(winnerList.size() == 1){
             String name = winnerList.get(0).getName();
             return String.format("%s wins! Their hand total was %d", name, handValue);

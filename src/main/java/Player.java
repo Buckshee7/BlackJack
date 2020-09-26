@@ -25,4 +25,8 @@ public class Player {
     public void clearHand(){
         this.hand.clear();
     }
+
+    public int getHandTotal(){
+        return 1;
+    }
 }

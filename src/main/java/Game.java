@@ -25,6 +25,13 @@ public class Game {
         }
     }
 
+    public String twist(Player player){
+        player.addCard(deck.dealCard());
+        int index = player.getHand().size() - 1;
+        Card card = player.getHand().get(index);
+        return card.getCardValueAndSuit();
+    }
+
     private ArrayList<Player> decideWinner(){
         ArrayList<Player> winnerList = new ArrayList<>();
         for(Player player : players){

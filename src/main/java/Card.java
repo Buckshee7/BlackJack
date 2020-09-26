@@ -21,7 +21,7 @@ public class Card {
     }
 
     public String getCardValueAndSuit(){
-        return String.format("%s of %s", this.getCardName(), this.cardValue);
+        return String.format("%s of %s", this.getCardName(), this.cardSuit);
     }
 
 }

@@ -27,4 +27,9 @@ public class CardTest {
         assertEquals(CardValue.KING, this.card.getCardName() );
     }
 
+    @Test
+    public void canGetValueAndSuit(){
+        assertEquals("KING of SPADES", this.card.getCardValueAndSuit());
+    }
+
 }

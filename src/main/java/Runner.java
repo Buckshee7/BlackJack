@@ -46,7 +46,7 @@ public class Runner {
                 while (endTurn == false) {
                     if (player.getHandTotal() > 21){
                         System.out.println(String.format("%s is bust!", player.getName()));
-                    } else if (player.getHandTotal() == "Blackjack"){
+                    } else if (player.getHandTotal() == 100){
                         System.out.println("BlackJack!");
                     }
                     //get player decision
@@ -85,7 +85,7 @@ public class Runner {
             }
         }
 
-        game.reportGameOutcome();
+//        game.reportGameOutcome();
     }
 
 }
